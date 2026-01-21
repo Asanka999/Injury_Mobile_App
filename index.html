@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="theme-color" content="#667eea">
-    <title>Cricket Injury Assessment</title>
+    <title>Cricket Back Injury Assessment</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -50,7 +50,7 @@
                     </div>
                     <div class="stat-info">
                         <div class="stat-label">Accuracy</div>
-                        <div class="stat-number">98.5%</div>
+                        <div class="stat-number">98%</div>
                     </div>
                 </div>
                 <div class="quick-stat-card">
@@ -59,7 +59,7 @@
                     </div>
                     <div class="stat-info">
                         <div class="stat-label">Factors</div>
-                        <div class="stat-number">8</div>
+                        <div class="stat-number">15</div>
                     </div>
                 </div>
             </div>
@@ -95,7 +95,7 @@
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">🔬</div>
-                    <h4>Evidence-Based</h4>
+                    <h4>SHAP Analysis Evidence-Based</h4>
                     <p>Scientific methodology</p>
                 </div>
             </div>
@@ -193,7 +193,8 @@
                     </div>
 
                     <div class="input-group">
-                        <label class="input-label">Current Pain Level: <span class="input-value pain-value" id="painValue">0</span></label>
+                        <label class="input-label">Current Pain Level: Related or Non Related to the Back Injury  <span class="input-value pain-value" id="painValue">0</span></label>
+                         <label class="input-label">0= No pain, 1-2 =  Mild, 3-5= Modarate, 6-7= Strong, 8-9= Intense, 10= Severe  <span class="input-value pain-value" id="painValue">0</span></label>
                         <input type="range" id="painLevel" min="0" max="10" value="0" class="pain-slider">
                         <div class="pain-indicators">
                             <span class="pain-emoji">😊</span>

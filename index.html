@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#667eea">
+    <title>Cricket Injury Assessment</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Mobile App Header -->
+    <header class="app-header">
+        <div class="header-content">
+            <div class="back-btn" id="backBtn" style="display: none;">
+                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+            </div>
+            <div class="header-title">
+                <div class="app-logo">🏏</div>
+                <div>
+                    <h1 id="headerTitle">Cricket Back Injury Predictive Tool</h1>
+                    <p id="headerSubtitle">Cricket Injury Prevention</p>
+                </div>
+            </div>
+            <div class="header-actions">
+                <button class="icon-btn" id="infoBtn">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="10" cy="10" r="9"/><path d="M10 10v4m0-7h.01"/></svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="app-body">
+        <!-- HOME SCREEN -->
+        <div class="screen active" id="homeScreen">
+            <div class="welcome-banner">
+                <div class="banner-decoration"></div>
+                <div class="banner-content">
+                    <div class="welcome-icon">🎯</div>
+                    <h2>Welcome Back!</h2>
+                    <p>Let's assess your injury risk</p>
+                </div>
+            </div>
+
+            <div class="quick-stats">
+                <div class="quick-stat-card">
+                    <div class="stat-icon-wrapper gradient-1">
+                        <span>⚡</span>
+                    </div>
+                    <div class="stat-info">
+                        <div class="stat-label">Accuracy</div>
+                        <div class="stat-number">98.5%</div>
+                    </div>
+                </div>
+                <div class="quick-stat-card">
+                    <div class="stat-icon-wrapper gradient-2">
+                        <span>🎯</span>
+                    </div>
+                    <div class="stat-info">
+                        <div class="stat-label">Factors</div>
+                        <div class="stat-number">8</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="action-section">
+                <h3 class="section-title">Quick Actions</h3>
+                <button class="primary-action-btn" onclick="navigateTo('formScreen')">
+                    <div class="btn-icon">📋</div>
+                    <div class="btn-content">
+                        <div class="btn-title">New Assessment</div>
+                        <div class="btn-subtitle">Complete player evaluation</div>
+                    </div>
+                    <div class="btn-arrow">→</div>
+                </button>
+                
+                <div class="secondary-actions">
+                    <button class="secondary-btn" onclick="navigateTo('infoScreen')">
+                        <span class="btn-icon-sm">📚</span>
+                        <span>Learn More</span>
+                    </button>
+                    <button class="secondary-btn" onclick="alert('Feature coming soon!')">
+                        <span class="btn-icon-sm">📊</span>
+                        <span>History</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="feature-cards">
+                <div class="feature-card">
+                    <div class="feature-icon">🤖</div>
+                    <h4>AI-Powered</h4>
+                    <p>Machine learning analysis</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔬</div>
+                    <h4>Evidence-Based</h4>
+                    <p>Scientific methodology</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- FORM SCREEN -->
+        <div class="screen" id="formScreen">
+            <div class="progress-indicator">
+                <div class="progress-step active" data-step="1">1</div>
+                <div class="progress-line"></div>
+                <div class="progress-step" data-step="2">2</div>
+                <div class="progress-line"></div>
+                <div class="progress-step" data-step="3">3</div>
+                <div class="progress-line"></div>
+                <div class="progress-step" data-step="4">4</div>
+            </div>
+
+            <form id="assessmentForm">
+                <!-- Step 1: Demographics -->
+                <div class="form-step active" data-step="1">
+                    <div class="step-header">
+                        <div class="step-icon">👤</div>
+                        <h2>Basic Information</h2>
+                        <p>Tell us about yourself</p>
+                    </div>
+
+                    <div class="input-group">
+                        <label class="input-label">Age: <span class="input-value" id="ageValue">25</span> years</label>
+                        <input type="range" id="age" min="15" max="40" value="25" class="modern-slider">
+                        <div class="slider-markers">
+                            <span>15</span><span>25</span><span>40</span>
+                        </div>
+                    </div>
+
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label class="input-label">Height (cm)</label>
+                            <div class="number-input">
+                                <input type="number" id="height" value="175" min="150" max="210">
+                                <span class="input-unit">cm</span>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <label class="input-label">Weight (kg)</label>
+                            <div class="number-input">
+                                <input type="number" id="weight" value="70" min="45" max="120">
+                                <span class="input-unit">kg</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label class="input-label">Playing Role</label>
+                        <select id="role" class="modern-select">
+                            <option value="Fast Bowler">⚡ Fast Bowler</option>
+                            <option value="Spin Bowler">🌀 Spin Bowler</option>
+                            <option value="Batsman">🏏 Batsman</option>
+                            <option value="All-rounder">⭐ All-rounder</option>
+                            <option value="Wicketkeeper">🧤 Wicketkeeper</option>
+                        </select>
+                    </div>
+
+                    <div class="metric-card">
+                        <div class="metric-header">Body Mass Index</div>
+                        <div class="metric-value" id="bmiDisplay">23.5</div>
+                        <div class="metric-status" id="bmiStatus">Normal Range</div>
+                        <div class="metric-bar">
+                            <div class="metric-fill" id="bmiFill"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2: Injury & Pain -->
+                <div class="form-step" data-step="2">
+                    <div class="step-header">
+                        <div class="step-icon">🩺</div>
+                        <h2>Injury History</h2>
+                        <p>Help us understand your condition</p>
+                    </div>
+
+                    <div class="input-group">
+                        <label class="input-label">Previous Back Injury?</label>
+                        <div class="radio-cards">
+                            <input type="radio" name="pastInjury" value="No" id="injuryNo" checked>
+                            <label for="injuryNo" class="radio-card">
+                                <span class="radio-icon">✅</span>
+                                <span class="radio-text">No</span>
+                            </label>
+                            <input type="radio" name="pastInjury" value="Yes" id="injuryYes">
+                            <label for="injuryYes" class="radio-card">
+                                <span class="radio-icon">⚠️</span>
+                                <span class="radio-text">Yes</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label class="input-label">Current Pain Level: <span class="input-value pain-value" id="painValue">0</span></label>
+                        <input type="range" id="painLevel" min="0" max="10" value="0" class="pain-slider">
+                        <div class="pain-indicators">
+                            <span class="pain-emoji">😊</span>
+                            <span class="pain-emoji">😐</span>
+                            <span class="pain-emoji">😟</span>
+                            <span class="pain-emoji">😣</span>
+                            <span class="pain-emoji">😫</span>
+                        </div>
+                        <div class="pain-labels">
+                            <span>No Pain</span>
+                            <span>Severe</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3: Training & Workload -->
+                <div class="form-step" data-step="3">
+                    <div class="step-header">
+                        <div class="step-icon">💪</div>
+                        <h2>Training Details</h2>
+                        <p>Your weekly routine</p>
+                    </div>
+
+                    <div class="input-group">
+                        <label class="input-label">Training Hours/Week</label>
+                        <div class="number-input">
+                            <input type="number" id="trainingHours" value="15" min="0" max="50">
+                            <span class="input-unit">hrs</span>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label class="input-label">Bowling Overs/Week</label>
+                        <div class="number-input">
+                            <input type="number" id="bowlingWorkload" value="20" min="0" max="150">
+                            <span class="input-unit">overs</span>
+                        </div>
+                    </div>
+
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label class="input-label">Matches/Month</label>
+                            <div class="number-input">
+                                <input type="number" id="matchesPerMonth" value="4" min="0" max="15">
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <label class="input-label">Recovery Days/Week</label>
+                            <div class="number-input">
+                                <input type="number" id="recoveryDays" value="2" min="0" max="7">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label class="input-label">Strength Training</label>
+                        <select id="strengthTraining" class="modern-select">
+                            <option value="No">❌ Never</option>
+                            <option value="Rarely">🔸 Rarely</option>
+                            <option value="Yes" selected>✅ Sometimes</option>
+                            <option value="Regular">💪 Regular</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group">
+                        <label class="input-label">Core Strength</label>
+                        <select id="coreStrength" class="modern-select">
+                            <option value="Poor">😟 Poor</option>
+                            <option value="Average">😐 Average</option>
+                            <option value="Good" selected>😊 Good</option>
+                            <option value="Excellent">🌟 Excellent</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Step 4: Recovery & Conditioning -->
+                <div class="form-step" data-step="4">
+                    <div class="step-header">
+                        <div class="step-icon">😴</div>
+                        <h2>Recovery & Prep</h2>
+                        <p>Your wellness routine</p>
+                    </div>
+
+                    <div class="input-group">
+                        <label class="input-label">Sleep: <span class="input-value" id="sleepValue">7.0</span> hrs/night</label>
+                        <input type="range" id="sleepHours" min="3" max="12" value="7" step="0.5" class="modern-slider">
+                        <div class="slider-markers">
+                            <span>3h</span><span>7.5h</span><span>12h</span>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label class="input-label">Flexibility: <span class="input-value" id="flexValue">7</span>/10</label>
+                        <input type="range" id="flexibilityScore" min="1" max="10" value="7" class="modern-slider">
+                        <div class="slider-markers">
+                            <span>Poor</span><span>Good</span><span>Excellent</span>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label class="input-label">Posture: <span class="input-value" id="postValue">7</span>/10</label>
+                        <input type="range" id="postureScore" min="1" max="10" value="7" class="modern-slider">
+                        <div class="slider-markers">
+                            <span>Poor</span><span>Good</span><span>Excellent</span>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label class="input-label">Warm-up Frequency</label>
+                        <select id="warmUp" class="modern-select">
+                            <option value="Never">Never</option>
+                            <option value="Rarely">Rarely</option>
+                            <option value="Sometimes">Sometimes</option>
+                            <option value="Often" selected>Often</option>
+                            <option value="Always">Always</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group">
+                        <label class="input-label">Cool-down Frequency</label>
+                        <select id="coolDown" class="modern-select">
+                            <option value="Never">Never</option>
+                            <option value="Rarely">Rarely</option>
+                            <option value="Sometimes">Sometimes</option>
+                            <option value="Often" selected>Often</option>
+                            <option value="Always">Always</option>
+                        </select>
+                    </div>
+                </div>
+            </form>
+
+            <div class="form-navigation">
+                <button type="button" class="nav-btn secondary" id="prevBtn" onclick="previousStep()">
+                    ← Previous
+                </button>
+                <button type="button" class="nav-btn primary" id="nextBtn" onclick="nextStep()">
+                    Next →
+                </button>
+                <button type="button" class="nav-btn calculate" id="calculateBtn" onclick="calculateAndNavigate()" style="display: none;">
+                    Calculate 🎯
+                </button>
+            </div>
+        </div>
+
+        <!-- RESULTS SCREEN -->
+        <div class="screen" id="resultsScreen">
+            <div id="resultsContainer"></div>
+        </div>
+
+        <!-- INFO SCREEN -->
+        <div class="screen" id="infoScreen">
+            <div class="info-hero">
+                <div class="info-icon">📚</div>
+                <h2>About This System</h2>
+                <p>Evidence-based injury prevention</p>
+            </div>
+
+            <div class="info-section">
+                <div class="info-card">
+                    <div class="info-card-header">
+                        <span class="info-emoji">🎓</span>
+                        <h3>Research</h3>
+                    </div>
+                    <div class="info-details">
+                        <div class="detail-row">
+                            <strong>Institution:</strong>
+                            <span>Sabaragamuwa University</span>
+                        </div>
+                        <div class="detail-row">
+                            <strong>Researcher:</strong>
+                            <span>Y.M. V A D Yapa</span>
+                        </div>
+                        <div class="detail-row">
+                            <strong>Version:</strong>
+                            <span>2.0 Scientific</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-card-header">
+                        <span class="info-emoji">⚖️</span>
+                        <h3>Evidence Weights</h3>
+                    </div>
+                    <div class="weight-list">
+                        <div class="weight-item">
+                            <span>Workload</span>
+                            <div class="weight-bar-bg"><div class="weight-bar-fill" style="width: 30%"></div></div>
+                            <strong>30%</strong>
+                        </div>
+                        <div class="weight-item">
+                            <span>Previous Injury</span>
+                            <div class="weight-bar-bg"><div class="weight-bar-fill" style="width: 25%"></div></div>
+                            <strong>25%</strong>
+                        </div>
+                        <div class="weight-item">
+                            <span>Recovery</span>
+                            <div class="weight-bar-bg"><div class="weight-bar-fill" style="width: 10%"></div></div>
+                            <strong>10%</strong>
+                        </div>
+                        <div class="weight-item">
+                            <span>Sleep/Fatigue</span>
+                            <div class="weight-bar-bg"><div class="weight-bar-fill" style="width: 10%"></div></div>
+                            <strong>10%</strong>
+                        </div>
+                        <div class="weight-item">
+                            <span>Core Strength</span>
+                            <div class="weight-bar-bg"><div class="weight-bar-fill" style="width: 10%"></div></div>
+                            <strong>10%</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-card-header">
+                        <span class="info-emoji">📖</span>
+                        <h3>Key References</h3>
+                    </div>
+                    <ul class="reference-list">
+                        <li>Dennis et al. (2005) - Workload</li>
+                        <li>Orchard et al. (2009) - Injury</li>
+                        <li>Gabbett (2016) - Recovery</li>
+                        <li>Hulin et al. (2014) - Risk Curves</li>
+                        <li>McGill (2010) - Core Strength</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner"></div>
+        <p class="loading-text">Analyzing Risk Factors...</p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
